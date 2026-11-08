@@ -1,0 +1,6 @@
+{
+  "name": "Shopify App Directory Crawler & Excel Exporter",
+  "description": "Full-stack web data extraction and Excel export tool for Shopify apps from SASI Top Reviewed directory with official App Store verification.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

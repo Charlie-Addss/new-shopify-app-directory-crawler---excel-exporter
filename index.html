@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // Gracefully stub vite-hmr WebSocket in Cloud Run/iframe environment where HMR is disabled
+      (function() {
+        if (typeof window !== 'undefined') {
+          const OriginalWS = window.WebSocket;
+          if (OriginalWS) {
+            window.WebSocket = function(url, protocols) {
+              if (protocols === 'vite-hmr' || (typeof url === 'string' && (url.includes('token=') || url.includes('24678')))) {
+                var target = new EventTarget();
+                target.readyState = 1;
+                target.send = function() {};
+                target.close = function() {};
+                setTimeout(function() {
+                  target.dispatchEvent(new Event('open'));
+                }, 0);
+                return target;
+              }
+              return new OriginalWS(url, protocols);
+            };
+            window.WebSocket.prototype = OriginalWS.prototype;
+            window.WebSocket.CONNECTING = 0;
+            window.WebSocket.OPEN = 1;
+            window.WebSocket.CLOSING = 2;
+            window.WebSocket.CLOSED = 3;
+          }
+          window.addEventListener('unhandledrejection', function(event) {
+            var reason = event && event.reason;
+            var msg = reason && (reason.message || String(reason));
+            var stack = reason && (reason.stack || '');
+            if (msg && (msg.includes('WebSocket') || msg.includes('vite:ws') || stack.includes('@vite/client') || stack.includes('createWebSocketModuleRunnerTransport'))) {
+              event.preventDefault();
+              event.stopImmediatePropagation();
+            }
+          }, true);
+        }
+      })();
+    </script>
+    <title>Shopify App Intelligence & Directory Crawler</title>
+    <meta name="description" content="Semrush/Ahrefs-style competitive intelligence analytics dashboard and full-stack web data extraction pipeline for the Shopify App Store." />
+    <meta property="og:title" content="Shopify App Intelligence & Directory Crawler" />
+    <meta property="og:description" content="Semrush/Ahrefs-style competitive intelligence analytics dashboard and full-stack web data extraction pipeline for the Shopify App Store." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

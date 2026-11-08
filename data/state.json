@@ -1,0 +1,39 @@
+{
+  "config": {
+    "directoryUrl": "https://sasi.heymantle.com/top-reviewed",
+    "startPage": 1,
+    "endPage": null,
+    "maxApps": null,
+    "batchSize": 5,
+    "requestDelayMs": 600,
+    "maxRetries": 3,
+    "testMode": false,
+    "exportVerifiedOnly": false
+  },
+  "stats": {
+    "totalPagesDiscovered": 0,
+    "pagesCompleted": 0,
+    "pagesRemaining": 0,
+    "appsDiscovered": 0,
+    "appsProcessed": 0,
+    "appsVerified": 0,
+    "appsPartiallyVerified": 0,
+    "appsFailed": 0,
+    "duplicateCount": 0,
+    "currentPage": 1,
+    "currentApp": "",
+    "currentAppSlug": "",
+    "startTime": null,
+    "endTime": null,
+    "elapsedSeconds": 0,
+    "status": "idle",
+    "statusMessage": "Ready to start crawl",
+    "estimatedSecondsRemaining": null,
+    "recentAverageAppSeconds": null,
+    "recentAppsSampleCount": 0,
+    "appsRemaining": null,
+    "appsPerMinute": null
+  },
+  "lastCompletedPage": 0,
+  "processedSlugs": []
+}
